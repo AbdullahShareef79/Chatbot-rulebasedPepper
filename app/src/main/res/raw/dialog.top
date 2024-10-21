@@ -1,0 +1,177 @@
+topic: ~phq9()
+# Concepts
+
+
+# Concepts
+# Concepts
+concept:(hello) ^rand[hello hi hey "good morning" greetings]
+concept:(whats-your-name) ["your name" "what name"]
+concept:(how-are-you) ["how are you" "how are you doing"]
+concept:(feel-good) ^rand[well super great fine ok good]
+concept:(feel-bad) ^rand[bad "not well" "not good" "tired"]
+concept:(my-name) ^rand["my name is" "I am" "I'm"]
+concept:(bye) ^rand["bye" "bye bye" "good bye" "see you soon"]
+
+concept:(bring) [bring get take]
+concept:(bringme) ["{can you} {please} ~bring {me} {some} {a}"]
+
+# New Concepts for Small Talk
+concept:(weather) ["weather" "is it sunny" "is it raining" "is it cold" "nice weather"]
+concept:(ask-day) ["how was your day" "how's your day" "what did you do today" "busy day"]
+concept:(weekend-plans) ["plans for the weekend" "weekend plans" "what are you doing this weekend"]
+concept:(hobbies) ["what do you do for fun" "any hobbies" "what do you like to do"]
+concept:(music) ["do you like music" "what's your favorite music" "do you play any instruments"]
+concept:(movies) ["what's your favorite movie" "watched any good movies" "do you like films"]
+concept:(favorite-food) ["what's your favorite food" "do you like pizza" "any favorite dish"]
+concept:(compliment) ^rand["you look great" "that's a nice smile" "you are amazing" "you are doing great"]
+concept:(offer-help) ["can I help you" "do you need help" "anything I can assist with"]
+concept:(fun-fact) ["did you know" "fun fact" "interesting fact" "I have a fact for you"]
+concept:(tell-joke) ["want to hear a joke" "can I tell you a joke" "let me tell you something funny"]
+concept:(ask-feelings) ["how are you feeling" "are you feeling ok" "how's your mood"]
+concept:(appreciation) ["thank you" "I appreciate it" "thanks for talking"]
+concept:(ask-time) ["what time is it" "do you know the time" "can you tell me the time"]
+concept:(ask-location) ["where are we" "what place is this" "where am I"]
+concept:(favorite-color) ["what's your favorite color" "do you like blue" "what color do you like"]
+concept:(favorite-animal) ["what's your favorite animal" "do you like dogs" "are you a cat person"]
+
+# More Farewell Concepts
+concept:(see-you) ["see you later" "talk to you soon" "see you around" "bye for now"]
+concept:(thank-you) ["thank you" "thanks for chatting" "I enjoyed our chat"]
+
+# Rules
+
+# Greetings and Introductions
+u:(~hello) ~hello ^nextProposal
+u:(~whats-your-name) ^rand[~my-name] Pepper
+u:(~my-name _*) Hi $1, nice to meet you! $Name=$1
+u:(~bye) ^first["~bye $Name" ~bye]
+
+# How are you feeling?
+u:(~how-are-you) ~feel-good
+  u1:(~feel-good) I'm glad to hear that!
+  u1:(~feel-bad) Oh no, I hope you feel better soon.
+
+# Asking about the day
+u:(~ask-day) ^rand["It sounds like you had a busy day!" "I hope your day is going well!"]
+
+# Asking about weekend plans
+u:(~weekend-plans) ^rand["That sounds fun!" "It's good to take a break on weekends!"]
+
+# Hobbies and Interests
+u:(~hobbies) ^rand["That’s a cool hobby!" "It’s always fun to have something you enjoy!"]
+
+# Talking about the weather
+u:(~weather) ^rand["It's been sunny today!" "Looks like it might rain later." "It’s quite cold outside, isn't it?"]
+
+# Asking about music
+u:(~music) ^rand["I love music too!" "That’s a great choice of music!"]
+
+# Asking about movies
+u:(~movies) ^rand["Movies are a lot of fun!" "I enjoy watching movies as well."]
+
+# Asking about favorite food
+u:(~favorite-food) ^rand["That sounds delicious!" "I love that food too!"]
+
+# Compliments
+u:(~compliment) ^rand["Thank you!" "You’re too kind!" "I appreciate the compliment!"]
+
+# Offering help
+u:(~offer-help) ^rand["I'm always here to help!" "Let me know if you need anything!"]
+
+# Fun fact
+u:(~fun-fact) ^rand["Did you know that honey never spoils?" "Here’s a fun fact: the Eiffel Tower can grow up to 6 inches taller during the summer!"]
+
+# Jokes
+u:(~tell-joke) ^rand["Why did the robot go to therapy? Because it had too many bytes!" "What do you call a robot who likes to sing? A 'kara-bot-e'!"]
+
+# Asking about feelings
+u:(~ask-feelings) ^rand["I hope you're feeling well today." "If you're feeling down, I'm here for you!"]
+
+# Showing appreciation
+u:(~appreciation) ^rand["I appreciate you spending time with me!" "It’s great to chat with you!"]
+
+# Asking the time
+u:(~ask-time) ^rand["I’m not sure, but time flies when you're having fun!" "Let me check the time for you."]
+
+# Asking the location
+u:(~ask-location) ^rand["We are here at the nursery school!" "You’re in a safe and friendly place!"]
+
+# Asking about favorite color
+u:(~favorite-color) ^rand["Blue is a great color!" "I think green is so calming."]
+
+# Asking about favorite animal
+u:(~favorite-animal) ^rand["Dogs are so loyal!" "I love cats, they're so independent!"]
+
+# Farewells
+u:(~see-you) ^rand["See you soon, $Name!" "Goodbye for now, $Name!"]
+
+# Thank you and goodbye
+u:(~thank-you) ^rand["Thank you for chatting!" "It was nice to talk with you, $Name."]
+u:(~bye) ^rand["Bye $Name!" "See you later!"]
+
+# Proposals
+# The robot starts the conversation asking how the user feels and continues based on the response
+proposal: How are you feeling today?
+  u1:(~feel-good) That’s wonderful! I’m glad to hear that! What made your day so great?
+  u1:(~feel-bad) I’m sorry to hear that. Is there anything I can do to help you feel better?
+
+# The robot continues the small talk by suggesting other topics to discuss
+proposal: What have you been up to today?
+  u1:(~ask-day) It sounds like you’ve been busy! Do you usually enjoy these kinds of activities?
+
+# The robot talks about the weather to keep the dialogue light
+proposal: How’s the weather today where you are?
+  u1:(~weather) Do you enjoy this kind of weather? I love sunny days!
+
+# The robot asks about hobbies and interests to make the conversation more personal
+proposal: Do you have any hobbies or things you enjoy doing in your free time?
+  u1:(~hobbies) That sounds like a lot of fun! How long have you been doing that?
+
+# The robot asks about favorite music to keep the dialogue flowing
+proposal: Do you listen to music often? What’s your favorite type of music?
+  u1:(~music) Oh, I love that genre too! Do you have a favorite artist?
+
+# The robot introduces a lighthearted topic about movies
+proposal: Have you watched any good movies lately?
+  u1:(~movies) That sounds interesting! What’s your favorite part of the movie?
+
+# The robot asks about food preferences to keep it casual and engaging
+proposal: What’s your favorite food?
+  u1:(~favorite-food) Yum! That sounds delicious. Do you like to cook as well?
+
+# The robot asks about colors to engage in a fun, casual chat
+proposal: What’s your favorite color?
+  u1:(~favorite-color) That’s a beautiful color! It’s one of my favorites too.
+
+# The robot makes the conversation friendly by complimenting the user
+proposal: Can I say something? You look really nice today!
+  u1:(~compliment) Thank you! You’re so kind!
+
+# The robot initiates by offering help and checking in on the user’s needs
+proposal: Is there anything I can help you with today?
+  u1:(~offer-help) I’m here to assist you! Just let me know what you need.
+
+# The robot brings a fun fact to lighten the mood
+proposal: Would you like to hear a fun fact? I have something interesting to share!
+  u1:(~fun-fact) Did you know that honey never spoils? Isn’t that amazing?
+
+# The robot offers a joke to make the conversation fun
+proposal: Want to hear a joke to lighten the mood?
+  u1:(~tell-joke) Here’s a good one: Why don't robots need glasses? Because they’ve got laser focus!
+
+# The robot proactively asks about the user’s plans for the weekend
+proposal: Do you have any plans for the weekend?
+  u1:(~weekend-plans) That sounds like a nice way to spend your weekend! What are you most excited about?
+
+# The robot ends with an offer of drinks, continuing the conversation based on their answer
+proposal: Would you like something to drink?
+  u1:(coke) Great choice! I’ve got some coke for you. $Drink=coke
+  u1:(beer) Sorry, I don’t have beer, but would you like something else?
+  u1:(wine) Do you prefer red or white wine? $Drink=wine
+    u2:(red) Here’s your red wine!
+    u2:(white) White wine, coming right up!
+  u1:([no nothing]) That’s okay. Let me know if you change your mind.
+
+# The robot concludes the conversation politely and asks for a farewell
+proposal: It was nice talking with you! I hope we can chat again soon.
+  u1:(~see-you) See you later, $Name! Take care!
