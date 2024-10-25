@@ -1,0 +1,9 @@
+topic: ~introduction()
+# Defining extra concepts out of words or group of words
+#concept:(hello) [hello hi hey "good morning" greetings]
+
+# Replying to speech
+#u:(~hello) ~hello
+
+u: (tell me about the faculty) The faculty is known for its state-of-the-art research and dedicated teaching staff.
+u: (what does the faculty offer) The faculty offers various programs ranging from undergraduate to postgraduate levels.

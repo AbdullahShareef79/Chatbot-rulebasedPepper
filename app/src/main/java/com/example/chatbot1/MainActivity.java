@@ -1,7 +1,8 @@
-package com.example.myapplication;
+package com.example.chatbot1;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.aldebaran.qi.sdk.QiContext;
 import com.aldebaran.qi.sdk.QiSDK;
@@ -19,15 +20,17 @@ public class MainActivity extends RobotActivity implements RobotLifecycleCallbac
 
     private static final String TAG = "MainActivity"; // For logging
 
-
     // The QiContext provided by the QiSDK
     private QiContext qiContext = null;
+    private TextView helloTextView; // Reference to the TextView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Find the TextView in the layout
+        helloTextView = findViewById(R.id.helloTextView);
 
         // Register the RobotLifecycleCallbacks to this Activity
         QiSDK.register(this, this);
@@ -80,21 +83,14 @@ public class MainActivity extends RobotActivity implements RobotLifecycleCallbac
 
         // Set up a listener for a chat variable
         QiChatVariable nameVariable = qiChatbot.variable("Name");
-        nameVariable.addOnValueChangedListener(currentValue -> Log.i(TAG, "Chat var Name: " + currentValue));
+        nameVariable.addOnValueChangedListener(currentValue -> {
+            Log.i(TAG, "Chat var Name: " + currentValue);
 
-        // Set up a listener for drink variable or any other variable
-        QiChatVariable drinkVariable = qiChatbot.variable("Drink");
-        drinkVariable.addOnValueChangedListener(currentValue -> {
-            Log.i(TAG, "Chat var Drink: " + currentValue);
-            imageViewSetValue(); // Update this method if needed
+            // Update the TextView with the greeting
+            runOnUiThread(() -> helloTextView.setText("Hello " + currentValue + "!"));
         });
 
         // Start the chat action asynchronously
         chatAction.async().run();
-    }
-
-    // Update the ImageView based on the drink variable (placeholder method)
-    private void imageViewSetValue() {
-        // Implement logic to update the ImageView based on the current value
     }
 }

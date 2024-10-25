@@ -2,8 +2,7 @@ topic: ~phq9()
 # Concepts
 
 
-# Concepts
-# Concepts
+# Concepts for Small Talk
 concept:(hello) ^rand[hello hi hey "good morning" greetings]
 concept:(whats-your-name) ["your name" "what name"]
 concept:(how-are-you) ["how are you" "how are you doing"]
@@ -11,9 +10,6 @@ concept:(feel-good) ^rand[well super great fine ok good]
 concept:(feel-bad) ^rand[bad "not well" "not good" "tired"]
 concept:(my-name) ^rand["my name is" "I am" "I'm"]
 concept:(bye) ^rand["bye" "bye bye" "good bye" "see you soon"]
-
-concept:(bring) [bring get take]
-concept:(bringme) ["{can you} {please} ~bring {me} {some} {a}"]
 
 # New Concepts for Small Talk
 concept:(weather) ["weather" "is it sunny" "is it raining" "is it cold" "nice weather"]
@@ -39,6 +35,7 @@ concept:(see-you) ["see you later" "talk to you soon" "see you around" "bye for 
 concept:(thank-you) ["thank you" "thanks for chatting" "I enjoyed our chat"]
 
 # Rules
+# User Introduction
 
 # Greetings and Introductions
 u:(~hello) ~hello ^nextProposal

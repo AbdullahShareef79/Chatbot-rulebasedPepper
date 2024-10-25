@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.chatbot1;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
