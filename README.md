@@ -1,5 +1,3 @@
-# pepper-android-qichat-sample
+# Chatbot-rule-based
 
-For setup see <https://qisdk.softbankrobotics.com/sdk/doc/pepper-sdk/ch1_gettingstarted/installation.html.
-
-Follows through the Listen and reply tutorial (<https://qisdk.softbankrobotics.com/sdk/doc/pepper-sdk/ch4_api/conversation/tuto/qichatbot_tutorial.html>).
+This is a rule-based chatbot for Pepper Robot 2.9
